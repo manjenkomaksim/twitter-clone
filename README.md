@@ -28,7 +28,7 @@ A simple Twitter-like REST API built with Spring Boot, MongoDB, and WebSocket su
 git clone
 ```
 -------
-Create .env file with JWT secret
+! Create .env file with JWT secret and add it to App Run configuration
 
 -------
 ```bash
