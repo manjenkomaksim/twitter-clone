@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Feed Tester</title>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+</head>
+<body>
+<h2>WebSocket Feed Test</h2>
+<p>
+    <label>User ID: <input id="userId" value="680612fca6215e4723249da3" size="35" /></label>
+    <button onclick="connect()">Connect & Subscribe</button>
+</p>
+<pre id="output" style="background:#eee; padding:10px; max-width:700px; white-space:pre-wrap;"></pre>
+
+<script>
+    let stompClient = null;
+
+    function log(message) {
+        document.getElementById('output').textContent += message + "\n";
+    }
+
+    function connect() {
+        const userId = document.getElementById('userId').value;
+        const socket = new SockJS('http://localhost:8080/ws');
+        stompClient = Stomp.over(socket);
+
+        stompClient.connect({}, () => {
+            log("**** Connected to WebSocket ****");
+
+            const topic = `/topic/feed/${userId}`;
+            stompClient.subscribe(topic, message => {
+                log(`--- Message received: ---\n${message.body}`);
+            });
+
+            log(`Subscribed to: ${topic}`);
+        }, error => {
+            log(" Connection error: " + error);
+        });
+    }
+</script>
+</body>
+</html>
