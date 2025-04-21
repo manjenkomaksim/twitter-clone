@@ -26,7 +26,11 @@ A simple Twitter-like REST API built with Spring Boot, MongoDB, and WebSocket su
 
 ```bash
 git clone
+```
 
+Create .env file with Add JWT secret
+
+```bash
 cd twitter-clone
 
 ./gradlew build
