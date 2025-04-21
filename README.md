@@ -25,7 +25,7 @@ A simple Twitter-like REST API built with Spring Boot, MongoDB, and WebSocket su
 ## ⚙️ Getting Started
 
 ```bash
-git clone
+git clone  <...>
 ```
 -------
 ! Create .env file with JWT secret and add it to App Run configuration
@@ -34,10 +34,13 @@ git clone
 ```bash
 cd twitter-clone
 
+# Build and run tests
 ./gradlew build
 
+# MongoDB
 docker-compose up -d
 
+# Suggest to start via IDEA run config button
 ./gradlew bootRun
 ```
 
